@@ -14,6 +14,13 @@ classifiers = [
 ]
 dependencies = []
 
+[project.urls]
+Homepage = "https://github.com/mardiros/lastuuid"
+Documentation = "https://github.com/mardiros/lastuuid/blob/main/README.md"
+Repository = "https://github.com/mardiros/lastuuid.git"
+Issues = "https://github.com/mardiros/lastuuid/issues"
+Changelog = "https://github.com/mardiros/lastuuid/blob/main/CHANGELOG.md"
+
 [dependency-groups]
 dev = ["pip>=24.2", "mypy>=1.4.0,<2", "pytest>=8,<9", "pydantic>=2.7.0,<3"]
 
