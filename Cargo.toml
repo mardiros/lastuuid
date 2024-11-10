@@ -1,0 +1,22 @@
+[package]
+name = "lastuuid"
+version = "0.1.0"
+authors = ["Guillaume Gauvrit <guillaume@gauvr.it>"]
+edition = "2021"
+description = "Yest another UUID library."
+license = "MIT"
+readme = "README.md"
+
+[dependencies]
+pyo3 = { version = "0.22.5", features = ["extension-module"] }
+uuid7 = "1.1.0"
+
+[lib]
+name = "lastuuid"
+crate-type = ["staticlib"]
+
+[package.metadata.maturin]
+bindings = "pyo3"
+
+[tool.maturin]
+features = ["pyo3/extension-module"]
