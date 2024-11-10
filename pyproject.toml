@@ -1,6 +1,6 @@
 [project]
 name = "lastuuid"
-version = "0.1.0"
+version = "0.1.1"
 description = "UUID gen for the python standard library."
 readme = "README.md"
 license = { text = "MIT License" }
