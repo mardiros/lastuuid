@@ -1,7 +1,10 @@
 default_testsuite:='tests'
 
 develop:
-  uv run maturin develop
+    uv run maturin develop
+
+install:
+    uv sync
 
 test testsuite=default_testsuite: develop
     uv run pytest -sxv {{testsuite}}
