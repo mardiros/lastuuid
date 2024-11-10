@@ -1,0 +1,40 @@
+# Publish a release to PyPI.
+#
+# Assumed to run as a subworkflow of .github/workflows/release.yml; specifically, as a publish job
+# within `cargo-dist`.
+name: "Publish to PyPI"
+
+on:
+  workflow_call:
+    inputs:
+      release-version:
+        required: true
+        type: string
+      dry-run:
+        required: true
+        type: boolean
+    secrets:
+      PYPI_TOKEN:
+        required: true
+
+jobs:
+  pypi-publish:
+    name: Upload to PyPI
+    runs-on: ubuntu-latest
+    if: ${{ !inputs.dry-run }}
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: pypi_files_*
+          path: dist
+          merge-multiple: true
+
+      - name: Install twine
+        run: pip install twine
+
+      - name: Publish to PyPI
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+        run: twine upload --verbose dist/*

@@ -1,0 +1,48 @@
+# Build lastuuid tarballs for supported python.
+#
+# Adapted from uv and from pydantic-core CI
+name: "Build tarball"
+
+on:
+  workflow_call:
+    inputs:
+      release-version:
+        required: true
+        type: string
+      dry-run:
+        required: true
+        type: boolean
+  pull_request:
+    paths:
+      # When we change pyproject.toml, we want to ensure that the maturin builds still work.
+      - pyproject.toml
+      # And when we change this workflow itself...
+      - .github/workflows/build-sdist.yml
+
+concurrency:
+  group: sdist-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  sdist:
+    name: Build tarball for ${{ inputs.release-version }} ${{ inputs.dry-run && ' (dry-run)' || '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+      - uses: PyO3/maturin-action@v1
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+
+      - name: Install the project
+        run: uv sync
+
+      - name: Build tarball
+        run: uv build
+
+      - name: "Upload sdist"
+        uses: actions/upload-artifact@v4
+        with:
+          name: pypi_files_sdist
+          path: dist/*.tar.gz

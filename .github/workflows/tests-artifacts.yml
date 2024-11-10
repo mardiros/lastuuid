@@ -1,0 +1,50 @@
+name: tests artifacts
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_call:
+    inputs:
+      release-version:
+        required: true
+        type: string
+        description: "release number"
+      dry-run:
+        required: true
+        type: boolean
+        description: "blank run means that the release will not be pushed"
+
+jobs:
+  smoke-test:
+    name: smoke test ${{ inputs.release-version }} ${{ inputs.dry-run && ' (dry-run)' || '' }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: pypi_files_*
+          path: dist
+          merge-multiple: true
+
+      - uses: actions/setup-python@v5
+
+      - uses: actions/download-artifact@v4
+        name: download artifacts
+        with:
+          pattern: pypi_files_*
+          path: dist
+          merge-multiple: true
+
+      - name: Install from the sdist
+        run: |
+          pip install maturin
+          pip install dist/lastuuid-*.tar.gz --force-reinstall
+
+      - name: "Test sdist"
+        run: |
+          if [[ $(python -c 'import lastuuid; print(lastuuid.uuid7())') ]]; then
+            echo 'Ok';
+          else
+            echo 'Ko';
+            exit 1;
+          fi
