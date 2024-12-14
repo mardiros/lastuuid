@@ -3,6 +3,8 @@
 UUID type is awesome, but, at the moment, the UUID type in the standard library
 does not support the uuid7 format.
 
+This is where lastuuid library is usefull.
+
 ## Usage
 
 ### UUID7
@@ -46,9 +48,15 @@ $ python -m timeit "from uuid import uuid4; uuid4()"
 200000 loops, best of 5: 1.82 usec per loop
 ```
 
-### Testing with uuid without brain
+### Testing with uuid without a brain
 
-Autoincrement your uuid in a test suite avoid some brain pain.
+The uuidgen method is not made for production code, it is not suited to be
+fast, it is here to generate uuid has autoincrement or as redictable ids,
+because UUID are made to create an identifier before it's saved into a
+database.
+
+
+Autoincrement your uuid in a test suite avoid some brain pain:
 
 ```python
 >>> from lastuuid.dummies import uuidgen
@@ -58,13 +66,16 @@ UUID('00000000-0000-0000-0000-000000000001')
 UUID('00000000-0000-0000-0000-000000000002')
 ```
 
-Or event more readable;
-UUID predicted, where only the first bytes needs to be read.
+Or even more usefull:
+
+UUID predicted, where only the first bunch of bytes needs to be read; or a few,
+to arrange some object ids.
+
 
 ```python
 >>> from lastuuid.dummies import uuidgen
 >>> uuidgen(1)
 UUID('00000001-0000-0000-0000-000000000000')
->>> uuidgen(1,2,3,4,5)
+>>> uuidgen(1, 2, 3, 4, 5)
 UUID('00000001-0002-0003-0004-000000000005')
 ```
