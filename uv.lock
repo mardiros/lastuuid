@@ -43,10 +43,10 @@ wheels = [
 
 [[package]]
 name = "lastuuid"
-version = "0.1.1"
+version = "0.1.2"
 source = { editable = "." }
 
-[package.dependency-groups]
+[package.dev-dependencies]
 dev = [
     { name = "mypy" },
     { name = "pip" },
@@ -56,7 +56,7 @@ dev = [
 
 [package.metadata]
 
-[package.metadata.dependency-groups]
+[package.metadata.requires-dev]
 dev = [
     { name = "mypy", specifier = ">=1.4.0,<2" },
     { name = "pip", specifier = ">=24.2" },
