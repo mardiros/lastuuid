@@ -1,3 +1,4 @@
+use pyo3::exceptions::PyValueError;
 use pyo3::prelude::*;
 use pyo3::types::{timezone_utc_bound, PyBytes, PyDateTime, PyModule, PyTzInfo};
 
@@ -22,6 +23,15 @@ fn uuid7_to_datetime<'py>(
     uuid: Py<PyAny>,
     tz: Option<&Bound<'py, PyTzInfo>>,
 ) -> PyResult<PyObject> {
+    let py_version: Py<PyAny> = uuid.getattr(py, "version")?.into();
+    let version: u8 = py_version.extract(py)?;
+    if version != 7 {
+        return Err(PyValueError::new_err(format!(
+            "UUIDv7 expected, received UUIDv{:?}",
+            version
+        )));
+    }
+
     let py_bytes: Py<PyAny> = uuid.getattr(py, "bytes")?.into();
     let as_bytes: &[u8] = py_bytes.extract(py)?;
 
