@@ -48,13 +48,28 @@ $ python -m timeit "from uuid import uuid4; uuid4()"
 200000 loops, best of 5: 1.82 usec per loop
 ```
 
-### Testing with uuid without a brain
+### Utilities
+
+#### Extracting datetime from an uuid7
+
+The function uuid7_to_datetime can exctract the date part from the uuid,
+assumming the timezone is UTC.
+
+```python
+>>> import datetime
+>>> import lastuuid
+>>> lastuuid.uuid7_to_datetime(lastuuid.uuid7()), datetime.datetime.now(tz=datetime.timezone.utc)
+(datetime.datetime(2025, 2, 13, 23, 11, 33, 796000, tzinfo=datetime.timezone.utc), datetime.datetime(2025, 2, 13, 23, 11, 33, 796342, tzinfo=datetime.timezone.utc))
+```
+
+A secondary argument can be passed to override the timezone.
+
+#### Testing with uuid without a brain
 
 The uuidgen method is not made for production code, it is not suited to be
 fast, it is here to generate uuid has autoincrement or as redictable ids,
 because UUID are made to create an identifier before it's saved into a
 database.
-
 
 Autoincrement your uuid in a test suite avoid some brain pain:
 
@@ -71,7 +86,6 @@ Or even more usefull:
 UUID predicted, where only the first bunch of bytes needs to be read; or a few,
 to arrange some object ids.
 
-
 ```python
 >>> from lastuuid.dummies import uuidgen
 >>> uuidgen(1)
@@ -79,3 +93,6 @@ UUID('00000001-0000-0000-0000-000000000000')
 >>> uuidgen(1, 2, 3, 4, 5)
 UUID('00000001-0002-0003-0004-000000000005')
 ```
+
+uuidgen(1) create a UUID where the information is on the first part of the uuid,
+which is more efficient to read that UUID(int=1) where the value is on the right.
