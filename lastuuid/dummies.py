@@ -3,6 +3,8 @@
 from typing import Iterator
 from uuid import UUID
 
+__all__ = ["uuidgen"]
+
 
 def gen_id() -> Iterator[int]:
     num = 0
