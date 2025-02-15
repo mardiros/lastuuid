@@ -58,4 +58,6 @@ $ python -m timeit "from uuid import uuid4; uuid4()"
 ### Read More
 
 There are other usefull function in the library that cab be found in the
-API documentation.
+[API documentation](https://mardiros.github.io/lastuuid/).
+
+https://mardiros.github.io/lastuuid/
