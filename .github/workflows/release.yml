@@ -84,3 +84,11 @@ jobs:
       dry-run: ${{ needs.plan.outputs.dry-run == 'true' }}
     secrets:
       PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+
+  publish-doc:
+    needs:
+      - plan
+      - tests-artifacts
+    uses: ./.github/workflows/publish-doc.yml
+    with:
+      release-version: ${{ needs.plan.outputs.release_version }}
