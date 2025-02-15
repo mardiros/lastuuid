@@ -12,6 +12,9 @@ test testsuite=default_testsuite: develop
 lf:
     uv run pytest --lf -vvv
 
+fmt:
+    uv run ruff check --fix .
+    uv run ruff format src tests
 
 release major_minor_patch: && changelog
     #!/bin/bash
