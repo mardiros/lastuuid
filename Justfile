@@ -26,7 +26,7 @@ fmt:
 
 release major_minor_patch: && changelog
     #!/bin/bash
-    cargo release patch --no-confirm --no-tag --no-push --no-publish --execute
+    cargo release {{major_minor_patch}} --no-confirm --no-tag --no-push --no-publish --execute
     git reset --soft HEAD^
     export VERSION=$(head -n 10 Cargo.toml | grep version | sed 's/.*"\([^"]*\)".*/\1/')
     sed -i "s/version = \"\(.*\)\"/version = \"${VERSION}\"/" pyproject.toml
