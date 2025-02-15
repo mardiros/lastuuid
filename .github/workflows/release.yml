@@ -92,3 +92,7 @@ jobs:
     uses: ./.github/workflows/publish-doc.yml
     with:
       release-version: ${{ needs.plan.outputs.release_version }}
+      dry-run: ${{ needs.plan.outputs.dry-run == 'true' }}
+    permissions:
+      id-token: write
+      pages: write
