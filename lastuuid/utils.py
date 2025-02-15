@@ -1,12 +1,21 @@
-"""Utilities method that may be used for database querying purpose."""
+"""
+Utilities methods that may be used for database querying purpose.
+
+uuid7 are timestamped sorted, so there are a good solution for generating
+primary keys. Because they contains a date time, a UUID range can be compute
+in order to retrieve UUIDs generated at a given time.
+
+Note that in any distribyted system, only using a datetime, or an uuid
+has its limit to properly sort items. This documentation does not cover
+the design data intensive application book ;).
+"""
 
 from datetime import UTC, date, datetime, time, timedelta
 from typing_extensions import Tuple
 from uuid import UUID
 
 
-def _datetime_to_uuid7_low(dt: datetime) -> UUID:
-    # Convert datetime to Unix timestamp in milliseconds
+def _datetime_to_uuid7_lowest(dt: datetime) -> UUID:
     unix_ts_ms = int(dt.timestamp() * 1000)
     version = 0x07
     var = 2
@@ -16,32 +25,29 @@ def _datetime_to_uuid7_low(dt: datetime) -> UUID:
     return UUID(bytes=final_bytes)
 
 
-def _datetime_to_uuid7_high(dt: datetime) -> UUID:
-    # Convert datetime to Unix timestamp in milliseconds
-    unix_ts_ms = int(dt.timestamp() * 1000)
-    version = 0x07
-    var = 2
-    final_bytes = unix_ts_ms.to_bytes(6)
-    final_bytes += ((version << 12) + 0xFFF).to_bytes(2)
-    final_bytes += ((var << 62) + 0x3FFFFFFFFFFFFFFF).to_bytes(8)
-    return UUID(bytes=final_bytes)
-
-
 def uuid7_bounds_from_datetime(
-    dtlow: datetime,
-    dthigh: datetime | None = None,
+    dt_lower: datetime,
+    dt_upper: datetime | None = None,
 ) -> Tuple[UUID, UUID]:
     """
-    Get uuid bound for a particular datetime, or two.
+    Get uuid bound for a half-open interval.
 
     This function can be usefull to search for any rows based on a uuid7 in a sql query.
     If one parameter is set, then the search is based on a millisecond, because uuid7
-    are millisecond.
-    If two parameter are passed, the left range is from the first args (dtlow),
-    and the right range is the second args (dtlow), note that those bounds
-    are still millisecond.
+    are only millisecond precision.
+
+    The returned bound are half open, so the upper bound, from the ``dt_upper`` will
+    not include in the result, only the first value to be excluded.
+
+    If the the second parameter is ommited, then the bound only contains a millisecond,
+    of dt_lower.
+
+    :param dt_lower: the included left bound of the range.
+    :param dt_upper: the excluded right bound of the range.
     """
-    return _datetime_to_uuid7_low(dtlow), _datetime_to_uuid7_high(dthigh or dtlow)
+    return _datetime_to_uuid7_lowest(dt_lower), _datetime_to_uuid7_lowest(
+        dt_upper or (dt_lower + timedelta(milliseconds=1))
+    )
 
 
 def uuid7_bounds_from_date(dt: date, tz=UTC) -> Tuple[UUID, UUID]:
@@ -49,10 +55,13 @@ def uuid7_bounds_from_date(dt: date, tz=UTC) -> Tuple[UUID, UUID]:
     Get uuid bound for a particular day.
 
     This function can be usefull to search for any rows based on a uuid7 in a sql query.
-    The right bound return is the first uuid of the next day.
+    The right bound return is the first uuid of the next day that should be excluded.
+
+    :param dt: the included left bound of the range.
+    :param tz: the timezone used to compute the UUID, it should always be ommited.
     """
-    return _datetime_to_uuid7_low(
+    return _datetime_to_uuid7_lowest(
         datetime.combine(dt, time=time(tzinfo=tz))
-    ), _datetime_to_uuid7_low(
+    ), _datetime_to_uuid7_lowest(
         datetime.combine(dt + timedelta(days=1), time=time(tzinfo=tz))
     )
