@@ -1,12 +1,12 @@
 [project]
 name = "lastuuid"
-version = "0.1.2"
-description = "UUID gen for the python standard library."
+version = "0.2.0"
+description = "Fast UUIDv7 Compatible with standard library type, and utils."
 readme = "README.md"
 license = { text = "MIT License" }
 authors = [{ name = "Guillaume Gauvrit", email = "guillaume@gauvr.it" }]
 requires-python = ">=3.9"
-keywords = ["environment", "substitution", "variables"]
+keywords = ["uuid", "UUIDv7"]
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
@@ -16,10 +16,10 @@ dependencies = []
 
 [project.urls]
 Homepage = "https://github.com/mardiros/lastuuid"
-Documentation = "https://github.com/mardiros/lastuuid/blob/main/README.md"
+Documentation = "https://mardiros.github.io/lastuuid/"
 Repository = "https://github.com/mardiros/lastuuid.git"
 Issues = "https://github.com/mardiros/lastuuid/issues"
-Changelog = "https://github.com/mardiros/lastuuid/blob/main/CHANGELOG.md"
+Changelog = "https://mardiros.github.io/lastuuid/changelog.html"
 
 [tool.uv]
 default-groups = []

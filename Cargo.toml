@@ -1,6 +1,6 @@
 [package]
 name = "lastuuid"
-version = "0.1.2"
+version = "0.2.0"
 authors = ["Guillaume Gauvrit <guillaume@gauvr.it>"]
 edition = "2021"
 description = "Yest another UUID library."

@@ -1,3 +1,10 @@
+## 0.2.0  -  2025-02-15
+
+* Add more utilities in the API, such as {func}`lastuuid.uuid7_to_datetime`,
+{func}`lastuuid.utils.uuid7_bounds_from_date`,
+{func}`lastuuid.utils.uuid7_bounds_from_datetime`
+* Build a documentation available at https://mardiros.github.io/lastuuid/
+
 ## 0.1.2  -  2024-12-14
 
 * Build library for windows / python 3.10 for x64 and i686 architecture
