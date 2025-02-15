@@ -14,6 +14,11 @@ from datetime import UTC, date, datetime, time, timedelta
 from typing_extensions import Tuple
 from uuid import UUID
 
+__all__ = [
+    "uuid7_bounds_from_datetime",
+    "uuid7_bounds_from_date",
+]
+
 
 def _datetime_to_uuid7_lowest(dt: datetime) -> UUID:
     unix_ts_ms = int(dt.timestamp() * 1000)
