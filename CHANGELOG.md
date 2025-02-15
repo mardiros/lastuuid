@@ -1,4 +1,4 @@
-## 0.2.0  -  2025-02-15
+## 0.2.1  -  2025-02-15
 
 * Add more utilities in the API, such as {func}`lastuuid.uuid7_to_datetime`,
 {func}`lastuuid.utils.uuid7_bounds_from_date`,

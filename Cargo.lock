@@ -51,7 +51,7 @@ checksum = "b248f5224d1d606005e02c97f5aa4e88eeb230488bcc03bc9ca4d7991399f2b5"
 
 [[package]]
 name = "lastuuid"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "pyo3",
  "uuid7",
