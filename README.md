@@ -7,8 +7,10 @@
 UUID type is awesome, but, at the moment, the UUID type in the standard library
 does not support the uuid7 format.
 
-You may find plenty of library that implement uuid7, but they have downside,
-such has ignoring pull request to fix issues, or not compatible with Pydantic.
+**lastuuid** provide **fast UUIDv7 generation** made by the
+[rust crate uuid7](https://crates.io/crates/uuid7) **compatible with Pydantic**.
+
+It has additional features that may helps for testing or inspecting UUIDv7.
 
 ```{note}
 lastuuid is a developer joke based on the nature of UUIDv7,
@@ -42,7 +44,7 @@ from pydantic import BaseModel, Field
 from lastuuid import uuid7
 
 
-class Dummy(BaseModel):
+class Event(BaseModel):
     id: UUID = Field(default_factory=uuid7)
 
 ```

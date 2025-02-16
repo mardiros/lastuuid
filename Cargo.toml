@@ -3,7 +3,7 @@ name = "lastuuid"
 version = "0.2.1"
 authors = ["Guillaume Gauvrit <guillaume@gauvr.it>"]
 edition = "2021"
-description = "Yest another UUID library."
+description = "Fast UUIDv7 compatible with pydantic and the python standard library."
 license = "MIT"
 readme = "README.md"
 
