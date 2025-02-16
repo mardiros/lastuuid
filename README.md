@@ -42,7 +42,7 @@ from pydantic import BaseModel, Field
 from lastuuid import uuid7
 
 
-class Dummy(BaseModel):
+class Event(BaseModel):
     id: UUID = Field(default_factory=uuid7)
 
 ```
