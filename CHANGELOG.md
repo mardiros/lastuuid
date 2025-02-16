@@ -1,3 +1,7 @@
+## 0.2.2  -  2025-02-16
+
+* Only improve the documentation. The API of the library does not change. 
+
 ## 0.2.1  -  2025-02-15
 
 * Add more utilities in the API, such as {func}`lastuuid.uuid7_to_datetime`,
