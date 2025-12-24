@@ -1,7 +1,8 @@
-## 0.3.1  -  2025-12-24
+## 0.3.2  -  2025-12-24
 
 * Add new dummy helpers for UUID7.
 See {func}`lastuuid.dummies.uuid7gen` and {class}`lastuuid.dummies.LastUUID7Factory`
+* Drop python 3.9 support
 * Update pyo3, and uuid7 rust libraries.
 
 ## 0.2.2  -  2025-02-16
