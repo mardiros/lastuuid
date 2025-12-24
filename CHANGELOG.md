@@ -1,3 +1,8 @@
+## 0.3.0  -  2025-12-24
+
+* Add new dummy helpers for UUID7.
+See {func}`lastuuid.dummies.uuid7gen` and {class}`lastuuid.dummies.LastUUID7Factory`
+
 ## 0.2.2  -  2025-02-16
 
 * Only improve the documentation. The API of the library does not change. 
