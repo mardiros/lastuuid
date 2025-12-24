@@ -5,10 +5,12 @@ UUID generated here are full of 0, they does not respect any kind of UUID versio
 they remove a bit of cognitive load while testing.
 """
 
-from typing import Iterator
+from typing import Callable, Iterator, Optional, Protocol, TypeVar
 from uuid import UUID
 
-__all__ = ["uuidgen"]
+from lastuuid import uuid7
+
+__all__ = ["uuidgen", "uuid7gen"]
 
 
 def gen_id() -> Iterator[int]:
@@ -65,3 +67,26 @@ def uuidgen(i: int = 0, j: int = 0, k: int = 0, x: int = 0, y: int = 0) -> UUID:
     if i == 0 and y == 0:
         y = next(next_id)
     return UUID(f"{i:0>8}-{j:0>4}-{k:0>4}-{x:0>4}-{y:0>12}")
+
+
+class LastUUIDFunction(Protocol):
+    last: UUID | None
+
+    def __call__(self) -> UUID: ...
+
+
+# Actual function
+def _uuid7gen() -> UUID:
+    val = uuid7()
+    setattr(_uuid7gen, "last", val)
+    return val
+
+
+# Initialize the typed attribute
+_uuid7gen.last: Optional[UUID] = None  # type: ignore
+
+
+uuid7gen: LastUUIDFunction = _uuid7gen  # type: ignore
+
+
+uuid7gen.last
