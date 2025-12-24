@@ -1,6 +1,6 @@
 [package]
 name = "lastuuid"
-version = "0.3.2"
+version = "0.3.3"
 authors = ["Guillaume Gauvrit <guillaume@gauvr.it>"]
 edition = "2021"
 description = "Fast UUIDv7 compatible with pydantic and the python standard library."
