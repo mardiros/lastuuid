@@ -1,6 +1,7 @@
+from typing import NewType
 from uuid import UUID
 
-from lastuuid.dummies import uuid7gen, uuidgen
+from lastuuid.dummies import LastUUID7Factory, uuid7gen, uuidgen
 
 
 def test_default():
@@ -15,3 +16,11 @@ def test_predictable():
 def test_predictable_uuid7():
     myid = uuid7gen()
     assert myid == uuid7gen.last
+
+
+def test_predictable_uuid7_new_type():
+    ClientId = NewType("ClientId", UUID)
+
+    client_id_factory = LastUUID7Factory[ClientId](ClientId)
+    myid = client_id_factory()
+    assert myid == client_id_factory.last
