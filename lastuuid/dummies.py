@@ -7,6 +7,7 @@ they remove a bit of cognitive load while testing.
 
 from collections import deque
 from typing import (
+    Any,
     Deque,
     Generic,
     Iterator,
@@ -14,8 +15,6 @@ from typing import (
     TypeVar,
 )
 from uuid import UUID
-
-from typing_extensions import Any
 
 from lastuuid import uuid7
 
