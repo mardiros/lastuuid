@@ -8,8 +8,8 @@ license = "MIT"
 readme = "README.md"
 
 [dependencies]
-pyo3 = { version = "0.22.5", features = ["extension-module"] }
-uuid7 = "1.1.0"
+pyo3 = { version = "0.27.2", features = ["extension-module", "generate-import-lib"] }
+uuid7 = "1.4.0"
 
 [lib]
 name = "lastuuid"
