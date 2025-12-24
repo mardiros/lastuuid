@@ -14,9 +14,10 @@ uuid7 = "1.4.0"
 [lib]
 name = "lastuuid"
 crate-type = ["staticlib"]
+path = "src/lib.rs"
 
 [package.metadata.maturin]
 bindings = "pyo3"
 
 [tool.maturin]
-features = ["pyo3/extension-module"]
+features = ["pyo3/extension-module", "pyo3/generate-import-lib"]

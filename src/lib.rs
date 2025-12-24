@@ -1,6 +1,6 @@
 use pyo3::exceptions::PyValueError;
 use pyo3::prelude::*;
-use pyo3::types::{PyBytes, PyDateTime, PyModule, PyTzInfo};
+use pyo3::types::{PyDateTime, PyDict, PyModule, PyTzInfo};
 
 use ::uuid7::uuid7 as uuid7gen;
 
@@ -10,8 +10,10 @@ fn uuid7<'py>(py: Python<'py>) -> PyResult<Py<PyAny>> {
     let uuid_class = uuid_module.getattr("UUID")?;
 
     let myuuid = uuid7gen();
-    let args = ((), PyBytes::new(py, myuuid.as_bytes()));
-    let pyuuid = uuid_class.call1(args)?;
+    let kwargs = PyDict::new(py);
+    kwargs.set_item("bytes", myuuid.as_bytes())?;
+
+    let pyuuid = uuid_class.call((), Some(&kwargs))?;
 
     Ok(pyuuid.into())
 }
