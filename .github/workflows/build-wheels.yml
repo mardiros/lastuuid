@@ -45,15 +45,15 @@ jobs:
           - os: linux
             manylinux: auto
             target: armv7
-            interpreter: 3.9 3.10 3.11 3.12 3.13
+            interpreter: 3.10 3.11 3.12 3.13
           - os: linux
             manylinux: auto
             target: ppc64le
-            interpreter: 3.9 3.10 3.11 3.12 3.13
+            interpreter: 3.10 3.11 3.12 3.13
           - os: linux
             manylinux: auto
             target: s390x
-            interpreter: 3.9 3.10 3.11 3.12 3.13
+            interpreter: 3.10 3.11 3.12 3.13
           - os: linux
             manylinux: auto
             target: x86_64
@@ -71,7 +71,7 @@ jobs:
             target: x86_64
           - os: macos
             target: aarch64
-            interpreter: 3.9 pypy3.9 pypy3.10
+            interpreter: pypy3.10
 
           - os: windows
             target: x86_64
@@ -102,7 +102,7 @@ jobs:
         with:
           target: ${{ matrix.target }}
           manylinux: ${{ matrix.manylinux }}
-          args: --release --out dist --interpreter ${{ matrix.interpreter || '3.9 3.10 3.11 3.12 3.13 pypy3.9 pypy3.10' }}
+          args: --release --out dist --interpreter ${{ matrix.interpreter || '3.10 3.11 3.12 3.13 pypy3.10' }}
           rust-toolchain: 'stable'
           docker-options: -e CI
 
