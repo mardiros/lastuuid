@@ -22,7 +22,6 @@ This documentation does not cover the book Designing Data-Intensive Applications
 """
 
 from datetime import UTC, date, datetime, time, timedelta
-from typing_extensions import Tuple
 from uuid import UUID
 
 __all__ = [
@@ -44,7 +43,7 @@ def _datetime_to_uuid7_lowest(dt: datetime) -> UUID:
 def uuid7_bounds_from_datetime(
     dt_lower: datetime,
     dt_upper: datetime | None = None,
-) -> Tuple[UUID, UUID]:
+) -> tuple[UUID, UUID]:
     """
     Get uuid bound for a half-open interval.
 
@@ -66,7 +65,7 @@ def uuid7_bounds_from_datetime(
     )
 
 
-def uuid7_bounds_from_date(dt: date, tz=UTC) -> Tuple[UUID, UUID]:
+def uuid7_bounds_from_date(dt: date, tz=UTC) -> tuple[UUID, UUID]:
     """
     Get uuid bound for a particular day.
 
