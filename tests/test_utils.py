@@ -1,11 +1,19 @@
+from datetime import UTC, date, datetime
+from typing import NewType, assert_type
 from uuid import UUID
-from datetime import date, datetime, UTC
-
 
 from lastuuid.utils import (
+    NewTypeFactory,
     uuid7_bounds_from_date,
     uuid7_bounds_from_datetime,
 )
+
+
+def test_newtype_factory():
+    UserId = NewType("UserId", UUID)
+    newtype = NewTypeFactory[UserId](UserId)
+    val = newtype()
+    assert_type(val, UserId)
 
 
 def test_uuid7_range_from_datetime():

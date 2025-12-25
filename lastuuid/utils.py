@@ -21,13 +21,42 @@ This documentation does not cover the book Designing Data-Intensive Applications
 ```
 """
 
+from collections.abc import Callable
 from datetime import UTC, date, datetime, time, timedelta
+from typing import Any, Generic, TypeVar
 from uuid import UUID
+
+from .lastuuid import uuid7
 
 __all__ = [
     "uuid7_bounds_from_datetime",
     "uuid7_bounds_from_date",
 ]
+
+
+T = TypeVar("T", bound=UUID)
+
+
+class NewTypeFactory(Generic[T]):
+    """
+    Factory for NewType UUIDs
+    """
+
+    def __init__(self, newtype: Any, id_factory: Callable[[], UUID] = uuid7):
+        """
+        Create a factory of type that store the last instances.
+
+        :param newtype: the type to be used
+        :param id_factory: the factory to use, uuid7 by default.
+        """
+        self._newtype = newtype
+        self._id_factory = id_factory
+
+    def __call__(self) -> T:
+        val = self._id_factory()  # type: ignore
+        if self._newtype:
+            val: T = self._newtype(val)  # cast to NewType
+        return val
 
 
 def _datetime_to_uuid7_lowest(dt: datetime) -> UUID:
