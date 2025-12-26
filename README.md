@@ -2,7 +2,6 @@
 
 [![Documentation](https://github.com/mardiros/lastuuid/actions/workflows/publish-doc.yml/badge.svg)](https://mardiros.github.io/lastuuid/)
 [![Continuous Integration](https://github.com/mardiros/lastuuid/actions/workflows/tests.yml/badge.svg)](https://github.com/mardiros/lastuuid/actions/workflows/tests.yml)
-[![Maintainability](https://api.codeclimate.com/v1/badges/8e7293fabe7508b2ec6c/maintainability)](https://codeclimate.com/github/mardiros/lastuuid/maintainability)
 
 UUID type is awesome, but, at the moment, the UUID type in the standard library
 does not support the uuid7 format.
