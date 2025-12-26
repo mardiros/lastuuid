@@ -1,6 +1,5 @@
+from datetime import UTC, date, datetime
 from uuid import UUID
-from datetime import date, datetime, UTC
-
 
 from lastuuid.utils import (
     uuid7_bounds_from_date,

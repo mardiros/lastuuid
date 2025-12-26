@@ -49,6 +49,34 @@ class Event(BaseModel):
 
 ```
 
+#### NewType
+
+
+The NewTypeFactory will generate an uuid7 for a new defined type.
+
+```python
+from typing import NewType
+
+from uuid import UUID
+from pydantic import BaseModel, Field
+
+from lastuuid.utils import NewTypeFactory
+
+
+MessageID = NewType("MessageID", UUID)
+message_id = NewTypeFactory[MessageID](MessageID)
+
+
+class Message(BaseModel):
+    id: UUID = Field(default_factory=message_id)
+
+```
+
+The message_id here will generate a uuid7 typed MessageID,
+
+this avoid to write `MessageID(uuid7())` to have a MessageID typed uuid.
+
+
 #### Performance
 
 On my machine the uuid7 is as fast (or slow) as the native uuid4.

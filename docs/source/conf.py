@@ -51,8 +51,9 @@ autodoc2_packages = [
 
 autodoc2_module_all_regexes = [
     "lastuuid",
-    r"lastuuid\.utils",
+    r"lastuuid\.factories",
     r"lastuuid\.dummies",
+    r"lastuuid\.utils",
 ]
 
 autodoc2_docstring_parser_regexes = [

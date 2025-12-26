@@ -9,16 +9,6 @@ The design of UUIDv7 feet well with the design of BTree.
 Because they contains a date time, a UUID range can be compute
 in order to retrieve UUIDs generated at a given time.
 
-
-```{important}
-In a distributed system, relying solely on a datetime or UUIDv7 for sorting
-has limitations.
-While UUIDv7 ensures sequential ordering on a single machine, there is no guarantee
-that a UUIDv7 generated later on one machine will be greater than one generated
-earlier on another machine.
-
-This documentation does not cover the book Designing Data-Intensive Applications ;).
-```
 """
 
 from datetime import UTC, date, datetime, time, timedelta

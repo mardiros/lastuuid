@@ -8,6 +8,7 @@
 
 develop/lastuuid/lastuuid
 develop/lastuuid/lastuuid.dummies
+develop/lastuuid/lastuuid.factories
 develop/lastuuid/lastuuid.utils
 ```
 
