@@ -65,7 +65,7 @@ dependencies = [
 
 [[package]]
 name = "lastuuid"
-version = "0.3.3"
+version = "0.4.0"
 dependencies = [
  "pyo3",
  "uuid7",

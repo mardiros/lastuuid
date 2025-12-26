@@ -1,3 +1,9 @@
+## 0.4.0  -  2025-12-26
+
+* Create new module for factories. See {mod}`lastuuid.factories`.
+* Remove {class}`lastuuid.dummies.LastUUID7Factory`, replaced by
+  {class}`lastuuid.factories.LastUUIDFactory`.
+
 ## 0.3.3  -  2025-12-24
 * Add new dummy helpers for UUID7.
 See {func}`lastuuid.dummies.uuid7gen` and {class}`lastuuid.dummies.LastUUID7Factory`
