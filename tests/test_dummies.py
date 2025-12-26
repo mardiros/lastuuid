@@ -1,4 +1,3 @@
-from typing import NewType
 from uuid import UUID
 
 from lastuuid.dummies import uuid7gen, uuidgen

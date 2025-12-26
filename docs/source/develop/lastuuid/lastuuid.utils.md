@@ -30,7 +30,7 @@
 
 ### API
 
-````{py:function} uuid7_bounds_from_date(dt: datetime.date, tz=UTC) -> typing_extensions.Tuple[uuid.UUID, uuid.UUID]
+````{py:function} uuid7_bounds_from_date(dt: datetime.date, tz=UTC) -> tuple[uuid.UUID, uuid.UUID]
 :canonical: lastuuid.utils.uuid7_bounds_from_date
 
 ```{autodoc2-docstring} lastuuid.utils.uuid7_bounds_from_date
@@ -38,7 +38,7 @@
 ```
 ````
 
-````{py:function} uuid7_bounds_from_datetime(dt_lower: datetime.datetime, dt_upper: datetime.datetime | None = None) -> typing_extensions.Tuple[uuid.UUID, uuid.UUID]
+````{py:function} uuid7_bounds_from_datetime(dt_lower: datetime.datetime, dt_upper: datetime.datetime | None = None) -> tuple[uuid.UUID, uuid.UUID]
 :canonical: lastuuid.utils.uuid7_bounds_from_datetime
 
 ```{autodoc2-docstring} lastuuid.utils.uuid7_bounds_from_datetime

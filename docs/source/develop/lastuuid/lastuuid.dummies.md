@@ -10,12 +10,17 @@
 
 ## Module Contents
 
-### Functions
+### Data
 
 ````{list-table}
 :class: autosummary longtable
 :align: left
 
+* - {py:obj}`uuid7gen <lastuuid.dummies.uuid7gen>`
+  - ```{autodoc2-docstring} lastuuid.dummies.uuid7gen
+    :parser: myst
+    :summary:
+    ```
 * - {py:obj}`uuidgen <lastuuid.dummies.uuidgen>`
   - ```{autodoc2-docstring} lastuuid.dummies.uuidgen
     :parser: myst
@@ -25,10 +30,24 @@
 
 ### API
 
-````{py:function} uuidgen(i: int = 0, j: int = 0, k: int = 0, x: int = 0, y: int = 0) -> uuid.UUID
+````{py:data} uuid7gen
+:canonical: lastuuid.dummies.uuid7gen
+:value: >
+   'LastUUIDFactory(...)'
+
+```{autodoc2-docstring} lastuuid.dummies.uuid7gen
+:parser: myst
+```
+
+````
+
+````{py:data} uuidgen
 :canonical: lastuuid.dummies.uuidgen
+:value: >
+   'LastUUIDFactory(...)'
 
 ```{autodoc2-docstring} lastuuid.dummies.uuidgen
 :parser: myst
 ```
+
 ````
