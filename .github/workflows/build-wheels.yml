@@ -78,11 +78,11 @@ jobs:
           - os: windows
             target: i686
             python-architecture: x86
-            interpreter: pypy3.11 3.10 3.11 3.12 3.13 3.14 3.14t
+            interpreter: 3.10 3.11 3.12 3.13 3.14 3.14t
           - os: windows
             target: aarch64
             runs-on: windows-11-arm
-            interpreter: pypy3.11 3.10 3.11 3.12 3.13 3.14 3.14t
+            interpreter: 3.10 3.11 3.12 3.13 3.14 3.14t
 
     runs-on: ${{ matrix.runs-on || format('{0}-latest', (matrix.os == 'linux' && 'ubuntu') || matrix.os) }}
     steps:
