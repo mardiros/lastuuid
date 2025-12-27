@@ -1,3 +1,7 @@
+## 0.4.1  -  2025-12-27
+
+* Readd python3.10 compatibility (downgrade pyo3 to 0.26) 
+
 ## 0.4.0  -  2025-12-26
 
 * Create new module for factories. See {mod}`lastuuid.factories`.
