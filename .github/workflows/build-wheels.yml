@@ -45,15 +45,15 @@ jobs:
           - os: linux
             manylinux: auto
             target: armv7
-            interpreter: 3.11 3.12 3.13
+            # interpreter: 3.10 3.11 3.12 3.13 3.14 3.14t
           - os: linux
             manylinux: auto
             target: ppc64le
-            interpreter: 3.11 3.12 3.13
+            # interpreter: 3.10 3.11 3.12 3.13 3.14 3.14t
           - os: linux
             manylinux: auto
             target: s390x
-            interpreter: 3.11 3.12 3.13
+            # interpreter: 3.10 3.11 3.12 3.13 3.14 3.14t
           - os: linux
             manylinux: auto
             target: x86_64
@@ -69,23 +69,22 @@ jobs:
 
           - os: macos
             target: x86_64
-          # - os: macos
-          #   target: aarch64
-          #   interpreter: pypy3.10
+          - os: macos
+            target: aarch64
+            # interpreter:  pypy3.10 pypy3.11
 
           - os: windows
             target: x86_64
-            interpreter: 3.11 3.12 3.13
           - os: windows
             target: i686
             python-architecture: x86
-            interpreter: 3.11 3.12 3.13
-        exclude:
-          # Exclude failed build
+            interpreter: 3.10 3.11 3.12 3.13 3.14 3.14t
           - os: windows
             target: aarch64
+            runs-on: windows-11-arm
+            interpreter: 3.10 3.11 3.12 3.13 3.14 3.14t
 
-    runs-on: ${{ (matrix.os == 'linux' && 'ubuntu') || matrix.os }}-latest
+    runs-on: ${{ matrix.runs-on || format('{0}-latest', (matrix.os == 'linux' && 'ubuntu') || matrix.os) }}
     steps:
       - uses: actions/checkout@v4
 
@@ -102,7 +101,7 @@ jobs:
         with:
           target: ${{ matrix.target }}
           manylinux: ${{ matrix.manylinux }}
-          args: --release --out dist --interpreter ${{ matrix.interpreter || '3.11 3.12 3.13' }}
+          args: --release --out dist --interpreter ${{ matrix.interpreter || 'pypy3.10 pypy3.11 3.10 3.11 3.12 3.13 3.14 3.14t' }}
           rust-toolchain: 'stable'
           docker-options: -e CI
 
