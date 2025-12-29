@@ -1,3 +1,7 @@
+## 0.4.2  -  2025-12-29
+
+* Small typing update. 
+
 ## 0.4.1  -  2025-12-27
 
 * Readd python3.10 compatibility (downgrade pyo3 to 0.26) 
