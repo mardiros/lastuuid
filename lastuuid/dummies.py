@@ -5,6 +5,7 @@ UUID generated here are full of 0, they does not respect any kind of UUID versio
 they remove a bit of cognitive load while testing.
 """
 
+from collections.abc import Callable
 from typing import Iterator
 from uuid import UUID
 
@@ -29,7 +30,7 @@ def _uuidgen(i: int = 0, j: int = 0, k: int = 0, x: int = 0, y: int = 0) -> UUID
     return UUID(f"{i:0>8}-{j:0>4}-{k:0>4}-{x:0>4}-{y:0>12}")
 
 
-uuidgen = LastUUIDFactory(None, _uuidgen)
+uuidgen: Callable[..., UUID] = LastUUIDFactory[None](None, _uuidgen)  # type: ignore
 """
 A UUID generator that makes UUIDs more readable for humans.
 
@@ -78,7 +79,7 @@ UUID('00000000-0000-0000-0000-000000000001')
 
 """
 
-uuid7gen = LastUUIDFactory(None)
+uuid7gen: Callable[..., UUID] = LastUUIDFactory[None](None)  # type: ignore
 """
 Generate uuid7 and store the last generated values to get them
 using last and lasts property.
