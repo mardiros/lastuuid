@@ -25,6 +25,7 @@ Changelog = "https://mardiros.github.io/lastuuid/changelog.html"
 
 [tool.uv]
 default-groups = []
+cache-keys = [{file = "src/*.rs"}]
 
 # used by sphinx-notes/pages@v3
 [project.optional-dependencies]
