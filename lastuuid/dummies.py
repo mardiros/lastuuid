@@ -67,16 +67,15 @@ It also keep the 10 lasts created values.
 >>> from lastuuid.dummies import uuidgen
 >>> uuidgen()
 UUID('00000000-0000-0000-0000-000000000001')
->>> uuidgen.last
-UUID('00000000-0000-0000-0000-000000000001')
 >>> uuidgen()
 UUID('00000000-0000-0000-0000-000000000002')
->>> uuidgen.last
+>>> uuidgen.last()
 UUID('00000000-0000-0000-0000-000000000002')
->>> uuidgen.lasts[1]
+>>> uuidgen.last(2)
 UUID('00000000-0000-0000-0000-000000000001')
 ```
 
+See also {class}`lastuuid.factories.LastUUIDFactory`.
 """
 
 uuid7gen: Callable[..., UUID] = LastUUIDFactory[None](None)  # type: ignore
@@ -88,17 +87,7 @@ using last and lasts property.
 >>> from lastuuid.dummies import uuid7gen
 >>> uuid7gen()
 UUID('019b5cb2-2fea-7572-8fc6-84fc550278e8')
->>> uuid7gen.last
-UUID('019b5cb2-2fea-7572-8fc6-84fc550278e8')
->>> uuid7gen.lasts
-[UUID('019b5cb2-2fea-7572-8fc6-84fc550278e8')]
->>> uuid7gen()
-UUID('019b5cb2-82e5-709d-a24d-7dba31eb3e82')
->>> uuid7gen.last
-UUID('019b5cb2-82e5-709d-a24d-7dba31eb3e82')
->>> uuid7gen.last[0]
-UUID('019b5cb2-82e5-709d-a24d-7dba31eb3e82')
->>> uuid7gen.lasts[1]
+>>> uuid7gen.last()
 UUID('019b5cb2-2fea-7572-8fc6-84fc550278e8')
 ```
 

@@ -48,25 +48,26 @@ class LastUUIDFactory(NewTypeFactory[T]):
     ```python
     >>> from typing import NewType
     >>> from uuid import UUID
-    >>> from lastuuid.utils import LastUUIDFactory
+    >>> from lastuuid.factories import LastUUIDFactory
     >>> ClientId = NewType("ClientId", UUID)
     >>> client_id_factory = LastUUIDFactory[ClientId](ClientId)
     >>> client_id_factory()
-    UUID('019b4f7d-f9d1-7d46-922a-7b83c4462366')
+    UUID('019c21f2-43d6-7a1c-811e-5138f110345c')
     >>> client_id_factory()
-    UUID('019b4f7d-f9d2-7471-b6bb-c48f31146c56')
+    UUID('019c21f2-521f-7780-91e4-5a036d46e099')
     >>> client_id_factory()
-    UUID('019b4f7d-f9d2-7471-b6bb-c490f5b50e3a')
-    >>> client_id_factory.last
-    UUID('019b4f7d-f9d2-7471-b6bb-c490f5b50e3a')
-    >>> client_id_factory.lasts[0]
-    UUID('019b4f7d-f9d2-7471-b6bb-c490f5b50e3a')
-    >>> client_id_factory.lasts[1]
-    UUID('019b4f7d-f9d2-7471-b6bb-c48f31146c56')
-    >>> client_id_factory.lasts[2]
-    UUID('019b4f7d-f9d1-7d46-922a-7b83c4462366')
+    UUID('019c21f2-56a3-75e9-bac5-7cecf73a698a')
+    >>> client_id_factory.last()
+    UUID('019c21f2-56a3-75e9-bac5-7cecf73a698a')
+    >>> client_id_factory.last(1)
+    UUID('019c21f2-56a3-75e9-bac5-7cecf73a698a')
+    >>> client_id_factory.last(2)
+    UUID('019c21f2-521f-7780-91e4-5a036d46e099')
+    >>> client_id_factory.last(3)
+    UUID('019c21f2-43d6-7a1c-811e-5138f110345c')
     ```
     """
+
     def __init__(
         self,
         newtype: Any,
@@ -88,17 +89,6 @@ class LastUUIDFactory(NewTypeFactory[T]):
         self._cache.append(val)
         return val
 
-    @property
-    def last(self) -> T:
+    def last(self, i: int = 1) -> T:
         """Most recently generated UUID-NewType instance."""
-        return self._cache[-1]
-
-    @property
-    def lasts(self) -> list[T]:
-        """
-        Returns a list of the last N generated UUID-NewType instances.
-
-        The list is ordered from most recent to oldest.
-        The most recent value is accessible via `last`.
-        """
-        return list(reversed(self._cache))
+        return self._cache[-i]
