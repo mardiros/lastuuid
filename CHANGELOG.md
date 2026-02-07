@@ -1,4 +1,4 @@
-## 0.4.2  -  2026-02-07
+## 0.5.0  -  2026-02-07
 
 * API Break, {class}`lastuuid.factories.LastUUIDFactory`
   * the lasts property has been removed.
