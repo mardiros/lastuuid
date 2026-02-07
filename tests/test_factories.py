@@ -1,6 +1,8 @@
 from typing import NewType, assert_type
 from uuid import UUID
 
+import pytest
+
 from lastuuid.factories import (
     LastUUIDFactory,
     NewTypeFactory,
@@ -19,10 +21,12 @@ def test_last_uuid_factory():
 
     client_id_factory = LastUUIDFactory[ClientId](ClientId, cache_size=2)
     myid = client_id_factory()
-    assert myid == client_id_factory.last
+    assert myid == client_id_factory.last()
     myid2 = client_id_factory()
-    assert myid2 == client_id_factory.last
-    assert [myid2, myid] == client_id_factory.lasts
+    assert myid2 == client_id_factory.last()
+    assert myid == client_id_factory.last(2)
     myid3 = client_id_factory()
-    assert myid3 == client_id_factory.last
-    assert [myid3, myid2] == client_id_factory.lasts
+    assert myid3 == client_id_factory.last()
+    assert myid2 == client_id_factory.last(2)
+    with pytest.raises(IndexError):
+        client_id_factory.last(3)
