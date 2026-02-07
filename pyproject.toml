@@ -1,6 +1,6 @@
 [project]
 name = "lastuuid"
-version = "0.4.2"
+version = "0.5.0"
 description = "Fast UUIDv7 Compatible with standard library type, and utils."
 readme = "README.md"
 license = { text = "MIT License" }

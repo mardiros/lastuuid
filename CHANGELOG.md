@@ -1,3 +1,9 @@
+## 0.4.2  -  2026-02-07
+
+* API Break, {class}`lastuuid.factories.LastUUIDFactory`
+  * the lasts property has been removed.
+  * now last is now a function, the first argument can be used get older values.
+
 ## 0.4.2  -  2025-12-29
 
 * Small typing update. 
