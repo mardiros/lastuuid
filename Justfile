@@ -15,11 +15,13 @@ cleandoc:
     rm -rf docs/build
     rm -rf docs/source/develop
 
+test: lint typecheck unittest
+
 lint:
     uv run ruff check .
 
 typecheck:
-    uv run mypy src/python
+    uv run mypy lastuuid
 
 unittest testsuite=default_testsuite: develop
     uv run pytest -sxv {{testsuite}}
