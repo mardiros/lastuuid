@@ -1,3 +1,8 @@
+## 0.5.1  -  2026-11-11
+
+* Add support of python 3.15
+* Drop support of python 3.10 
+
 ## 0.5.0  -  2026-02-07
 
 * API Break, {class}`lastuuid.factories.LastUUIDFactory`
