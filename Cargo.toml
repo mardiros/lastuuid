@@ -9,7 +9,7 @@ readme = "README.md"
 
 [dependencies]
 pyo3 = { version = "0.29", features = ["abi3-py311", "extension-module"] }
-uuid7 = "1.4.0"
+uuid7 = "1.8.0"
 
 [lib]
 name = "lastuuid"
