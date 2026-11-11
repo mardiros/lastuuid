@@ -61,7 +61,7 @@ reportMissingTypeStubs = false
 
 [tool.ruff]
 line-length = 88
-target-version = "0.5.1"
+target-version = "py311"
 
 [tool.ruff.lint]
 select = [
