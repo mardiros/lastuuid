@@ -4,14 +4,14 @@ Factories for new types.
 
 from collections import deque
 from collections.abc import Callable
-from typing import Any, Deque, Generic, TypeVar
+from typing import Any, Generic, TypeVar
 from uuid import UUID
 
 from .lastuuid import uuid7
 
 __all__ = [
-    "NewTypeFactory",
     "LastUUIDFactory",
+    "NewTypeFactory",
 ]
 
 
@@ -37,8 +37,8 @@ class NewTypeFactory(Generic[T]):
         """Generate a new value."""
         val = self._id_factory(*args, **kwargs)  # type: ignore
         if self._newtype:
-            val: T = self._newtype(val)  # cast to NewType
-        return val
+            val: T = self._newtype(val)  # type: ignore
+        return val  # type: ignore
 
 
 class LastUUIDFactory(NewTypeFactory[T]):
@@ -81,7 +81,7 @@ class LastUUIDFactory(NewTypeFactory[T]):
         :param cache_size: size of the queue that saved the last uuids
         """
         super().__init__(newtype, id_factory)
-        self._cache: Deque[T] = deque(maxlen=cache_size)
+        self._cache: deque[T] = deque(maxlen=cache_size)
 
     def __call__(self, *args: Any, **kwargs: Any) -> T:
         """Generate the id and cache it."""

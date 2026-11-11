@@ -4,7 +4,13 @@ develop:
     uv run maturin develop
 
 install:
+    uv sync --group dev --frozen
+
+update:
     uv sync --group dev
+
+upgrade:
+    uv sync --group dev --upgrade
 
 doc:
     uv sync --group dev --group docs
@@ -15,7 +21,15 @@ cleandoc:
     rm -rf docs/build
     rm -rf docs/source/develop
 
-test testsuite=default_testsuite: develop
+test: lint typecheck unittest
+
+lint:
+    uv run ruff check .
+
+typecheck:
+    uv run mypy lastuuid
+
+unittest testsuite=default_testsuite: develop
     uv run pytest -sxv {{testsuite}}
 
 lf:

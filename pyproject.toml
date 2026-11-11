@@ -5,11 +5,17 @@ description = "Fast UUIDv7 Compatible with standard library type, and utils."
 readme = "README.md"
 license = { text = "MIT License" }
 authors = [{ name = "Guillaume Gauvrit", email = "guillaume@gauvr.it" }]
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 keywords = ["uuid", "UUIDv7"]
 classifiers = [
+    "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
     "Programming Language :: Rust",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Typing :: Typed",
@@ -27,13 +33,25 @@ Changelog = "https://mardiros.github.io/lastuuid/changelog.html"
 default-groups = []
 cache-keys = [{file = "src/*.rs"}]
 
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = [
+    "B",   # bug bear security warning
+    "I",   # isort import order
+    "F",   # pyflakes
+    "UP",  # alter when better syntax is available
+    "RUF", #  the ruff devleoper's own rules
+]
+
 # used by sphinx-notes/pages@v3
 [project.optional-dependencies]
 docs = [
     "furo >=2024.5.6",
     "linkify-it-py >=2.0.3,<3",
-    "myst-parser >=3.0.0,<4; python_version < '3.10'",
-    "myst-parser >=4.0.0,<5; python_version >= '3.10'",
+    "myst-parser >=4.0.0,<5",
     "sphinx >=7.0.1,<8",
     "sphinx-autodoc2 >=0.5.0,<1",
 ]
@@ -45,8 +63,7 @@ docs = [
     "sphinx-autodoc2 >=0.5.0,<1",
     "furo>=2024.8.6",
     "linkify-it-py >=2.0.3,<3",
-    "myst-parser >=3.0.0,<4; python_version < '3.10'",
-    "myst-parser >=4.0.0,<5; python_version >= '3.10'",
+    "myst-parser >=4.0.0,<5",
 ]
 
 [tool.maturin]

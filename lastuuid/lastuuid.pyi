@@ -1,8 +1,7 @@
 """Pyo3 binding interface definition."""
 
+from datetime import UTC, datetime
 from uuid import UUID
-from datetime import datetime, timezone
-
 
 def uuid7() -> UUID:
     """
@@ -10,5 +9,5 @@ def uuid7() -> UUID:
     """
 
 
-def uuid7_to_datetime(uuid7: UUID, tz=timezone.utc) -> datetime:
+def uuid7_to_datetime(uuid7: UUID, tz=UTC) -> datetime:
     """Extract the datetime part of an uuid 7."""

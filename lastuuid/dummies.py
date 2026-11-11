@@ -5,13 +5,12 @@ UUID generated here are full of 0, they does not respect any kind of UUID versio
 they remove a bit of cognitive load while testing.
 """
 
-from collections.abc import Callable
-from typing import Iterator
+from collections.abc import Callable, Iterator
 from uuid import UUID
 
 from lastuuid.factories import LastUUIDFactory
 
-__all__ = ["uuidgen", "uuid7gen"]
+__all__ = ["uuid7gen", "uuidgen"]
 
 
 def gen_id() -> Iterator[int]:
