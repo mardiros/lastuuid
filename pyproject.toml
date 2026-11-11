@@ -29,23 +29,6 @@ Repository = "https://github.com/mardiros/lastuuid.git"
 Issues = "https://github.com/mardiros/lastuuid/issues"
 Changelog = "https://mardiros.github.io/lastuuid/changelog.html"
 
-[tool.uv]
-default-groups = []
-cache-keys = [{file = "src/*.rs"}]
-
-[tool.ruff]
-line-length = 88
-target-version = "py311"
-
-[tool.ruff.lint]
-select = [
-    "B",   # bug bear security warning
-    "I",   # isort import order
-    "F",   # pyflakes
-    "UP",  # alter when better syntax is available
-    "RUF", #  the ruff devleoper's own rules
-]
-
 # used by sphinx-notes/pages@v3
 [project.optional-dependencies]
 docs = [
@@ -66,8 +49,32 @@ docs = [
     "myst-parser >=4.0.0,<5",
 ]
 
+[tool.uv]
+default-groups = []
+cache-keys = [{file = "src/rust/*.rs"}]
+
+[tool.pyright]
+extraPaths = ["src/python"]
+include = ["src/python", "tests"]
+typeCheckingMode = "strict"
+reportMissingTypeStubs = false
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = [
+    "B",   # bug bear security warning
+    "I",   # isort import order
+    "F",   # pyflakes
+    "UP",  # alter when better syntax is available
+    "RUF", #  the ruff devleoper's own rules
+]
+
 [tool.maturin]
 bindings = "pyo3"
+python-source = "src/python"
 
 [build-system]
 requires = ["maturin>=1.0,<2.0"]
