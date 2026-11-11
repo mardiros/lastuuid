@@ -1,8 +1,7 @@
 """Pyo3 binding interface definition."""
 
-from uuid import UUID
 from datetime import datetime, timezone
-
+from uuid import UUID
 
 def uuid7() -> UUID:
     """
