@@ -78,14 +78,14 @@ this avoid to write `MessageID(uuid7())` to have a MessageID typed uuid.
 
 #### Performance
 
-On my machine the uuid7 is as fast (or slow) as the native uuid4.
+On my machine the uuid7 is as fast (or slow) as the native uuid7 of python 3.14.
 
 ```bash
-$ python -m timeit "from lastuuid import uuid7; uuid7()"
-200000 loops, best of 5: 1.8 usec per loop
+𝝿 python -m timeit "from lastuuid import uuid7; uuid7()"
+200000 loops, best of 5: 1.6 usec per loop
 
-$ python -m timeit "from uuid import uuid4; uuid4()"
-200000 loops, best of 5: 1.82 usec per loop
+𝝿 python -m timeit "from uuid import uuid7; uuid7()"
+200000 loops, best of 5: 1.72 usec per loop
 ```
 
 ### Read More
