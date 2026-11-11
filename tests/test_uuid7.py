@@ -2,9 +2,8 @@ from datetime import UTC, datetime, timedelta, timezone
 from uuid import UUID
 
 import pytest
-from pydantic import BaseModel, Field
-
 from lastuuid import uuid7, uuid7_to_datetime
+from pydantic import BaseModel, Field
 
 dummy_timezone = timezone(timedelta(hours=2))
 

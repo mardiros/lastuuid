@@ -10,6 +10,7 @@ Because they contains a date time, a UUID range can be compute
 in order to retrieve UUIDs generated at a given time.
 
 """
+
 from __future__ import annotations
 
 from datetime import UTC, date, datetime, time, timedelta
