@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta, timezone
 from uuid import UUID
 
 import pytest
@@ -23,7 +23,7 @@ def test_dummy():
 
 def test_uuid7_to_datetime_default():
     assert uuid7_to_datetime(UUID("019500d0-468f-7eaa-ab66-f90e998cd72c")) == datetime(
-        2025, 2, 13, 19, 36, 44, 431000, tzinfo=timezone.utc
+        2025, 2, 13, 19, 36, 44, 431000, tzinfo=UTC
     )
 
 
