@@ -11,4 +11,4 @@ wheels/
 
 # Rust stuff
 target
-lastuuid/*.so
+src/python/lastuuid/*.so

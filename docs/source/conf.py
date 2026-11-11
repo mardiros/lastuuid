@@ -10,16 +10,18 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-import os
 import sys
 import tomllib
+from pathlib import Path
 
-sys.path.insert(0, os.path.abspath("../../src"))
+rootpath = Path(__file__).parents[2]
+
+sys.path.insert(0, str(rootpath / "src"))
 
 
 # -- Project information -----------------------------------------------------
 def _get_project_meta():
-    with open("../../pyproject.toml", "rb") as pyproject:
+    with open(rootpath / "pyproject.toml", "rb") as pyproject:
         return tomllib.load(pyproject)["project"]
 
 
@@ -45,7 +47,7 @@ extensions = [
 ]
 
 autodoc2_packages = [
-    {"path": "../../lastuuid"},
+    {"path": str(rootpath / "lastuuid")},
 ]
 
 autodoc2_module_all_regexes = [

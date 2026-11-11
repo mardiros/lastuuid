@@ -14,7 +14,7 @@ uuid7 = "1.4.0"
 [lib]
 name = "lastuuid"
 crate-type = ["staticlib"]
-path = "src/lib.rs"
+path = "src/rust/lib.rs"
 
 [package.metadata.maturin]
 bindings = "pyo3"
